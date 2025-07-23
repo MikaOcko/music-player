@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <!-- Favicon -->
+        <link rel="shortcut icon" href="assets/images/play.png" type="image/x-icon">
+        <!-- CSS -->
+        <link rel="stylesheet" href="style.css">
+        <!-- Font awesome CDN -->
+        <script src="https://kit.fontawesome.com/bbeb484a44.js" crossorigin="anonymous"></script>
+
+        <title>Music player</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="music-player">
+                <!-- Menu -->
+                <nav>
+                    <div class="btn">
+                        <i class="fa-solid fa-angle-left"></i>
+                    </div>
+                    <div class="btn">
+                        <i class="fa-solid fa-bars"></i>
+                    </div>
+                </nav>
+                <!-- Cover -->
+                <div class="cover">
+                    <img src="assets/images/cover1.jpg" alt="artist photo or song cover">
+                    <div>
+                        <h1 class="track-title">Japones</h1>
+                        <p class="artist-name">TheRAC29</p>
+                    </div>
+                </div>
+                <!-- Song/music -->
+                <div>
+                    <!-- Debug mode : add "controls" attribute to "audio" element to display audio controls (volume, duration, progress bar, play/pause button, mute) -->
+                    <audio controls id="audio">
+                        <source src="assets/audio/TheRAC29 - Japones.mp3" type="audio/mpeg">
+                    </audio>
+
+                    <div class="timeline-slider">
+                        <!-- Timeline -->
+                        <div class="timeline">
+                            <p class="time">0:00</p>
+                            <p class="fulltime">2:55</p>
+                        </div>
+                        <!-- Progression bar -->
+                        <div class="range-slider">
+                            <input type="range" value="0" id="duration-slider" class="slider">
+                        </div>
+                    </div>
+
+                    <!-- Volume -->
+                    <div class="volume-slider">
+                        <div class="btn volume-icon">
+                            <i class="fa-solid fa-volume-high"></i>
+                            <!-- <i class="fa-solid fa-volume-low"></i>
+                            <i class="fa-solid fa-volume-off"></i>
+                            <i class="fa-solid fa-volume-xmark"></i> -->
+                        </div>
+                        <div class="range-slider">
+                            <input type="range" value="0" class="slider">
+                        </div>
+                    </div>
+                    
+                    <!-- Button controls -->
+                    <div class="controls">
+                        <div class="btn-controls" id="btnPrev">
+                            <i class="fa-solid fa-backward"></i>
+                        </div>
+                        <div class="btn-controls" onclick="playPause()">
+                            <i class="fa-solid fa-play" id="btnPlay"></i>
+                            <!-- <i class="fa-solid fa-pause"></i> -->
+                        </div>
+                        <div class="btn-controls" id="btnNext">
+                            <i class="fa-solid fa-forward"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scripts -->
+        <script src="script.js" defer></script>
+    </body>
+</html>
