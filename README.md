@@ -6,7 +6,7 @@
 
 :tv: Video tutorial (youtube):
 [Music player](https://www.youtube.com/watch?v=JtrFzoL1joI)
-[Music player from scratch](https://www.youtube.com/watch?v=_QM4LSFe8fU) (7:22)
+[Music player from scratch](https://www.youtube.com/watch?v=_QM4LSFe8fU) (10:34)
 
 ## Badges
 ![Static Badge](https://img.shields.io/badge/langage-Html-blue)
