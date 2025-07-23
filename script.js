@@ -42,34 +42,58 @@ const covers = [
 ];
 
 // ---------- Functions/logic ----------
-// Duration range
-audio.onloadeddata = function() {
-    progressBar.max = audio.duration;
-    progressBar.value = audio.currentTime;
-};
+// // Duration range
+// audio.onloadeddata = function() {
+//     progressBar.max = audio.duration;
+//     progressBar.value = audio.currentTime;
+// };
 
-if (audio.play()) {
-    setInterval(() => {
-        progressBar.value = audio.currentTime;
-    }, 500);
-};
+// if (audio.play()) {
+//     setInterval(() => {
+//         progressBar.value = audio.currentTime;
+//     }, 500);
+// };
 
-progressBar.onchange = function() {
-    audio.play();
-    audio.currentTime = progressBar.value;
-    btnPlay.classList.add("fa-pause");
-    btnPlay.classList.remove("fa-play");
-};
+// progressBar.onchange = function() {
+//     audio.play();
+//     audio.currentTime = progressBar.value;
+//     btnPlay.classList.add("fa-pause");
+//     btnPlay.classList.remove("fa-play");
+// };
 
-// Play / Pause button
-function playPause() {
-    if(btnPlay.classList.contains("fa-pause")) {
-        audio.pause();
-        btnPlay.classList.add("fa-play");
-        btnPlay.classList.remove("fa-pause");
-    } else {
+// // Play / Pause button
+// function playPause() {
+//     if(btnPlay.classList.contains("fa-pause")) {
+//         audio.pause();
+//         btnPlay.classList.add("fa-play");
+//         btnPlay.classList.remove("fa-pause");
+//     } else {
+//         audio.play();
+//         btnPlay.classList.add("fa-pause");
+//         btnPlay.classList.remove("fa-play");
+//     };
+// };
+
+// Add a click event ont the play button
+btnPlay.addEventListener('click', playTrack);
+
+// Play track function
+function playTrack() {
+    if(trackPlaying === false) {
+        // Play the audio
         audio.play();
+        // Add a pause icon inside the button (& remove the play icon)
         btnPlay.classList.add("fa-pause");
         btnPlay.classList.remove("fa-play");
+        //Set the trackPlaying to true, because the track is now playing
+        trackPlaying = true;
+    } else {
+        // Pause the audio
+        audio.pause();
+        // Add a play icon inside the button (& remove the pause icon)
+        btnPlay.classList.add("fa-play");
+        btnPlay.classList.remove("fa-pause");
+        //Set the trackPlaying to false, because the track is now pause again
+        trackPlaying = false;
     };
 };
