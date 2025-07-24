@@ -44,8 +44,8 @@ Once cloned, navigate to the project folder and open `index.html` in your prefer
 ## Roadmap
 Future developments :
 [X] add more covers and songs (open source)
-[] display duration time
-[] manage the *seeking* for more accessibility
+[x] display duration time
+[x] manage the *seeking* for more accessibility
 [] add volume control to manage the volume of the song
 [x] make "backward" and "forward" buttons functional
 [] update license and contributions (pictures, artists)

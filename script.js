@@ -42,6 +42,7 @@ const covers = [
 ];
 
 // ---------- Functions/logic ----------
+// ------------------------------------------------------------------------------
 // // Duration range
 // audio.onloadeddata = function() {
 //     progressBar.max = audio.duration;
@@ -95,47 +96,7 @@ Durée de la chanson "Japones" = 2 minutes 17 secondes
 //     const secs = Math.floor(seconds % 60);
 //     return `${minutes}:${secs < 10 ? "0" : ""}${secs}`;
 // }
-
-// -----> Code from QuickCodingTuts :
-// Format the time in mm:ss format (the most audio and video players use)
-function setTime(output, input) {
-    // Calculate minutes from input
-    const minutes = Math.floor(input / 60);
-    // Calculate seconds from input
-    const seconds = Math.floor(input % 60);
-
-    // If the seconds are < 10
-    if(seconds < 10) {
-        //add a zero before the first number
-        output.innerHTML = minutes + ":0" + seconds;
-    } else {
-        // Output th time without a zero
-        output.innerHTML = minutes + ":" + seconds;
-    };
-};
-
-// Output the audio track duration
-setTime(fullTime, audio.duration);
-
-// When the time changes on the audio tracks
-audio.addEventListener('timeupdate', () => {
-    // Get the current audio time
-    const currentTime = audio.currentTime;
-    // Get the audio duration
-    const duration = audio.duration;
-
-    // Met à jour le curseur de la barre de progression
-    progressBar.value = currentTime;
-
-    // Met à jour l'affichage du temps actuel
-    setTime(time, currentTime);
-
-    // Met à jour la durée totale (au cas où elle n'était pas encore dispo)
-    if (!isNaN(duration)) {
-        setTime(fullTime, duration);
-        progressBar.max = duration;
-    }
-});
+//--------------------------------------------------------------------------
 
 
 // Add a click event ont the play button
@@ -239,11 +200,62 @@ function nextTrack() {
 // When the audio ends, switch to the next track
 audio.addEventListener('ended', nextTrack);
 
+// Format the time in mm:ss format (the most audio and video players use)
+function setTime(output, input) {
+    // Calculate minutes from input
+    const minutes = Math.floor(input / 60);
+    // Calculate seconds from input
+    const seconds = Math.floor(input % 60);
 
+    // If the seconds are < 10
+    if(seconds < 10) {
+        //add a zero before the first number
+        output.innerHTML = minutes + ":0" + seconds;
+    } else {
+        // Output th time without a zero
+        output.innerHTML = minutes + ":" + seconds;
+    };
+};
 
+// Output the audio track duration
+setTime(fullTime, audio.duration);
+
+// When the time changes on the audio tracks
+audio.addEventListener('timeupdate', () => {
+    // Get the current audio time
+    const currentTime = audio.currentTime;
+    // Get the audio duration
+    const duration = audio.duration;
+
+    // Met à jour le curseur de la barre de progression
+    progressBar.value = currentTime;
+
+    // Met à jour l'affichage du temps actuel
+    setTime(time, currentTime);
+
+    // Met à jour la durée totale (au cas où elle n'était pas encore dispo)
+    if (!isNaN(duration)) {
+        setTime(fullTime, duration);
+        progressBar.max = duration;
+    }
+});
 
 // ---------> A tester
 // Seek
 // progressBar.addEventListener('input', () => {
 //     audio.currentTime = progressBar.value;
 // });
+
+// Interactive progress bar
+function seekingTime() {
+    // Output the audio current time
+    setTime(time, progressBar.value);
+    // Set audio current time to progress bar value
+    audio.currentTime = progressBar.value;
+};
+
+// Call function initially
+seekingTime();
+
+// Repeat th function when the slider is selected
+progressBar.addEventListener('input', seekingTime);
