@@ -240,22 +240,43 @@ audio.addEventListener('timeupdate', () => {
     }
 });
 
-// ---------> A tester
-// Seek
-// progressBar.addEventListener('input', () => {
-//     audio.currentTime = progressBar.value;
-// });
-
-// Interactive progress bar
+// Interactive progress bar time track
 function seekingTime() {
     // Output the audio current time
     setTime(time, progressBar.value);
     // Set audio current time to progress bar value
     audio.currentTime = progressBar.value;
 };
-
 // Call function initially
 seekingTime();
-
 // Repeat th function when the slider is selected
 progressBar.addEventListener('input', seekingTime);
+
+// Volume slider current value
+let value = volumeSlider.value;
+// Interactive progress bar volume
+function seekingVolume() {
+    // Set the audio volume to the current value
+    audio.volume = volumeSlider.value / 100;
+    // Change icons
+    // If the volume is high
+    if (audio.volume > 0.5) {
+        volumeIcon.innerHTML = 
+            `<i class="fa-solid fa-volume-high"></i>`
+        ;
+    // If the volume is null
+    } else if (audio.volume === 0) {
+        volumeIcon.innerHTML = 
+            `<i class="fa-solid fa-volume-off"></i>`
+        ;
+    // If the volume is low
+    } else {
+        volumeIcon.innerHTML = 
+            `<i class="fa-solid fa-volume-low"></i>`
+        ;
+    }
+};
+// Call function initially
+seekingVolume();
+// Repeat th function when the slider is selected
+volumeSlider.addEventListener('input', seekingVolume);
