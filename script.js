@@ -15,7 +15,7 @@ const slider = document.querySelector('.slider');
 const thumb = document.querySelector('.slider-thumb');
 const progress = document.querySelector('.progress');
 const time = document.querySelector('.time');
-const fullTime = document.querySelector('.fullTime');
+const fullTime = document.querySelector('.fulltime');
 const volumeSlider = document.querySelector('.volume-slider .slider');
 const volumeProgress = document.querySelector('.volume-slider .progress');
 const volumeIcon = document.querySelector('.volume-icon');
@@ -74,7 +74,7 @@ const covers = [
 //     };
 // };
 
-// ------> To fix error : 
+// ------> To fix error (with chat GPT) : 
 /* Console error : setTime is not defined (line : 133, 131, 141)
 
 console.log(fullTime, audio.duration);
@@ -85,16 +85,58 @@ Ajout de l'attibut "max"
 à l'input de type range "duration-slider" = OK = 136.90482 ms +/- 2.28 min
 Durée de la chanson "Japones" = 2 minutes 17 secondes
 */
-function setTime(currentTime, duration) {
-    document.querySelector(".time").textContent = formatTime(currentTime);
-    document.querySelector(".fulltime").textContent = formatTime(duration);
-}
+// function setTime(currentTime, duration) {
+//     document.querySelector(".time").textContent = formatTime(currentTime);
+//     document.querySelector(".fulltime").textContent = formatTime(duration);
+// }
 
-function formatTime(seconds) {
-    const minutes = Math.floor(seconds / 60);
-    const secs = Math.floor(seconds % 60);
-    return `${minutes}:${secs < 10 ? "0" : ""}${secs}`;
-}
+// function formatTime(seconds) {
+//     const minutes = Math.floor(seconds / 60);
+//     const secs = Math.floor(seconds % 60);
+//     return `${minutes}:${secs < 10 ? "0" : ""}${secs}`;
+// }
+
+// -----> Code from QuickCodingTuts :
+// Format the time in mm:ss format (the most audio and video players use)
+function setTime(output, input) {
+    // Calculate minutes from input
+    const minutes = Math.floor(input / 60);
+    // Calculate seconds from input
+    const seconds = Math.floor(input % 60);
+
+    // If the seconds are < 10
+    if(seconds < 10) {
+        //add a zero before the first number
+        output.innerHTML = minutes + ":0" + seconds;
+    } else {
+        // Output th time without a zero
+        output.innerHTML = minutes + ":" + seconds;
+    };
+};
+
+// Output the audio track duration
+setTime(fullTime, audio.duration);
+
+// When the time changes on the audio tracks
+audio.addEventListener('timeupdate', () => {
+    // Get the current audio time
+    const currentTime = audio.currentTime;
+    // Get the audio duration
+    const duration = audio.duration;
+
+    // Met à jour le curseur de la barre de progression
+    progressBar.value = currentTime;
+
+    // Met à jour l'affichage du temps actuel
+    setTime(time, currentTime);
+
+    // Met à jour la durée totale (au cas où elle n'était pas encore dispo)
+    if (!isNaN(duration)) {
+        setTime(fullTime, duration);
+        progressBar.max = duration;
+    }
+});
+
 
 // Add a click event ont the play button
 btnPlay.addEventListener('click', playTrack);
@@ -136,6 +178,10 @@ const trackSrc = 'assets/audio/' + tracks[trackId] + ".mp3"; //dynamiccaly selec
 function loadTrack() {
     // set the audio track source
     audio.src = 'assets/audio/' + tracks[trackId] + ".mp3";
+    // Reset display time
+    setTime(time, 0);
+    //Set the timeline slider to the beginning
+    progressBar.value = 0;
     // Re-load the audio track
     audio.load();
     // Set the track title
@@ -143,11 +189,7 @@ function loadTrack() {
     // Set the artist name
     artistName.innerHTML = artists[trackId];
     // Set the cover image
-   cover.src = 'assets/images/' + covers[trackId] + ".jpg";
-
-//    //Set the timeline slider to the beginning
-//    progress.style.width = 0;
-//    thumb.style.left = 0;
+    cover.src = 'assets/images/' + covers[trackId] + ".jpg";
 
     // Wait for the audio data to load
     audio.addEventListener('loadeddata', () => {
@@ -196,3 +238,12 @@ function nextTrack() {
 
 // When the audio ends, switch to the next track
 audio.addEventListener('ended', nextTrack);
+
+
+
+
+// ---------> A tester
+// Seek
+// progressBar.addEventListener('input', () => {
+//     audio.currentTime = progressBar.value;
+// });
