@@ -42,63 +42,6 @@ const covers = [
 ];
 
 // ---------- Functions/logic ----------
-// ------------------------------------------------------------------------------
-// // Duration range
-// audio.onloadeddata = function() {
-//     progressBar.max = audio.duration;
-//     progressBar.value = audio.currentTime;
-// };
-
-// if (audio.play()) {
-//     setInterval(() => {
-//         progressBar.value = audio.currentTime;
-//     }, 500);
-// };
-
-// progressBar.onchange = function() {
-//     audio.play();
-//     audio.currentTime = progressBar.value;
-//     btnPlay.classList.add("fa-pause");
-//     btnPlay.classList.remove("fa-play");
-// };
-
-// // Play / Pause button
-// function playPause() {
-//     if(btnPlay.classList.contains("fa-pause")) {
-//         audio.pause();
-//         btnPlay.classList.add("fa-play");
-//         btnPlay.classList.remove("fa-pause");
-//     } else {
-//         audio.play();
-//         btnPlay.classList.add("fa-pause");
-//         btnPlay.classList.remove("fa-play");
-//     };
-// };
-
-// ------> To fix error (with chat GPT) : 
-/* Console error : setTime is not defined (line : 133, 131, 141)
-
-console.log(fullTime, audio.duration);
- - fullTime = null
- - audio.duration = NaN
-
-Ajout de l'attibut "max"
-à l'input de type range "duration-slider" = OK = 136.90482 ms +/- 2.28 min
-Durée de la chanson "Japones" = 2 minutes 17 secondes
-*/
-// function setTime(currentTime, duration) {
-//     document.querySelector(".time").textContent = formatTime(currentTime);
-//     document.querySelector(".fulltime").textContent = formatTime(duration);
-// }
-
-// function formatTime(seconds) {
-//     const minutes = Math.floor(seconds / 60);
-//     const secs = Math.floor(seconds % 60);
-//     return `${minutes}:${secs < 10 ? "0" : ""}${secs}`;
-// }
-//--------------------------------------------------------------------------
-
-
 // Add a click event ont the play button
 btnPlay.addEventListener('click', playTrack);
 
@@ -269,6 +212,7 @@ function seekingVolume() {
         volumeIcon.innerHTML = 
             `<i class="fa-solid fa-volume-off"></i>`
         ;
+        volumeMuted = true;
     // If the volume is low
     } else {
         volumeIcon.innerHTML = 
