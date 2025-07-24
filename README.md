@@ -46,7 +46,8 @@ Future developments :
 [X] add more covers and songs (open source)
 [x] display duration time
 [x] manage the *seeking* for more accessibility
-[] add volume control to manage the volume of the song
+[x] add volume control to manage the volume of the song
+[x] mute the volume
 [x] make "backward" and "forward" buttons functional
 [] update license and contributions (pictures, artists)
 

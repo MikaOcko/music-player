@@ -280,3 +280,26 @@ function seekingVolume() {
 seekingVolume();
 // Repeat th function when the slider is selected
 volumeSlider.addEventListener('input', seekingVolume);
+
+// Add click event to the volume button
+volumeIcon.addEventListener('click', () => {
+    // if the volume is not muted
+    if (volumeMuted === false) {
+        volumeIcon.innerHTML = 
+            `<i class="fa-solid fa-volume-off"></i>`
+        ;
+        // Mute the audio
+        audio.volume = 0;
+        // Set the volume slider to zero
+        volumeSlider.value = audio.volume;
+        // Set the volumeMuted to true because the volume is now muted
+        volumeMuted = true;
+    } else {
+        volumeIcon.innerHTML = 
+            `<i class="fa-solid fa-volume-low"></i>`
+        ;
+        audio.volume = 0.4;
+        volumeSlider.value = audio.volume * 100;
+        volumeMuted = false;
+    };
+});
