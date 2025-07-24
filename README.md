@@ -6,14 +6,14 @@
 
 :tv: Video tutorial (youtube):
 [Music player](https://www.youtube.com/watch?v=JtrFzoL1joI)
-[Music player from scratch](https://www.youtube.com/watch?v=_QM4LSFe8fU) (10:34)
+[Music player from scratch](https://www.youtube.com/watch?v=_QM4LSFe8fU) (11:56)
 
 ## Badges
 ![Static Badge](https://img.shields.io/badge/langage-Html-blue)
 ![Static Badge](https://img.shields.io/badge/langage-CSS-orange)
 ![Static Badge](https://img.shields.io/badge/langage-JavaScript-yellow)
 
-![Static Badge](https://img.shields.io/badge/canvas-8A2BE2)
+![Static Badge](https://img.shields.io/badge/Math()_methods-8A2BE2)
 
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
@@ -45,9 +45,13 @@ Once cloned, navigate to the project folder and open `index.html` in your prefer
 Future developments :
 [X] add more covers and songs (open source)
 [] display duration time
+[] manage the *seeking* for more accessibility
 [] add volume control to manage the volume of the song
-[] make "backward" and "forward" buttons functional
+[x] make "backward" and "forward" buttons functional
 [] update license and contributions (pictures, artists)
+
+> [!TIP]
+> Le *seek* ou *seeking signifie : ller à un moment précis de la piste en cliquant ou en déplaçant le curseur sur la barre de progression.
 
 ## Contributing
 Pull requests are welcome! For major changes, please open an issue first to discuss what you'd like to modify.
